@@ -23,5 +23,5 @@ public class Testaddpatients {
 		p.phoneno=sc.nextLong();
 		obj.addpatient(p);
 		sc.close();
-	}s
+	}
 }
