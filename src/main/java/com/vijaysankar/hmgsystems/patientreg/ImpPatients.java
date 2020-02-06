@@ -6,13 +6,17 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.vijaysankar.hmgsystems.dbexception.Dbexception;
+import com.vijaysankar.hmgsystems.util.Logger;
 public class ImpPatients {
-	
-	public void addpatient(Patientreglist p1) throws Exception{
 		
-		Connection con = connections.TestConnections();
+	Logger logger=Logger.getInstance();
+
+	public void addpatient(Patientreglist p1) throws Exception{
 		String sql = "insert into patientReg(patient_id,patientname,adharcardno,dob,gender,phoneno,patientreg_date)values(patient_id.nextval,?,?,?,?,?,sysdate)";
-		PreparedStatement pst= con.prepareStatement(sql);	
+		try(Connection con = connections.TestConnections();
+		PreparedStatement pst= con.prepareStatement(sql);)
+		{
 		pst.setString(1,p1.patientname);	
 		pst.setLong(2,p1.adharno );
 		java.sql.Date dat = java.sql.Date.valueOf(p1.dob);
@@ -20,16 +24,17 @@ public class ImpPatients {
 		pst.setString(4,p1.gender );	
 		pst.setLong(5,p1.phoneno );
 		int rows= pst.executeUpdate();
-
-		System.out.println("no of rows inserted: " +rows);
-
-
+		logger.info(rows);
+	}catch(Dbexception e) {
+		throw new Dbexception("Insertion into patient Registration failed");
+	}
 	}
 	public ArrayList<Patientreglist> viewpatient() throws Exception{
-		ArrayList<Patientreglist> obj=new ArrayList<Patientreglist>();
-		Connection con = connections.TestConnections();	
 		String sql = "select * from patientReg";
-		Statement stmt=con.createStatement();
+		ArrayList<Patientreglist> obj=new ArrayList<Patientreglist>();
+		try(Connection con = connections.TestConnections();	
+		Statement stmt=con.createStatement();)
+		{
 		ResultSet rs=stmt.executeQuery(sql);
 		while(rs.next()) {
 			Patientreglist p2= new Patientreglist();
@@ -43,13 +48,11 @@ public class ImpPatients {
 			p2.gender=rs.getString("gender");
 			p2.phoneno=rs.getLong("phoneno");
 			p2.regdate=rs.getDate("patientReg_date");
-			obj.add(p2);
-
-		
-	}
-		return obj;
-
-	
-	
-}
-}
+			obj.add(p2);	
+			}
+		return obj;	
+		}catch(Dbexception e) {
+			throw new Dbexception("Selection from patient Registration failed");
+		}
+		}
+		}

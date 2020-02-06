@@ -1,13 +1,8 @@
 package com.vijaysankar.overallrating;
-
 import java.util.Scanner;
-
 import com.vijaysankar.hmgsystems.overallrating.Impoverall;
 import com.vijaysankar.hmgsystems.overallrating.Overallrating;
-
-
 public class TestdocidAdd {
-
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		Impoverall c= new Impoverall();
@@ -16,6 +11,6 @@ public class TestdocidAdd {
 		System.out.println("enter doctor id");
 		a.doctor_id=sc.nextInt();
 		c.add(a);
+		sc.close();
 	}
-
 }

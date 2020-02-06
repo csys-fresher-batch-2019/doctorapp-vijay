@@ -1,14 +1,9 @@
 package com.vijaysankar.hmgsystems;
-
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Scanner;
-
 import com.vijaysankar.hmgsystems.patientreg.ImpPatients;
 import com.vijaysankar.hmgsystems.patientreg.Patientreglist;
-
 public class Testaddpatients {
-
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		ImpPatients obj = new ImpPatients();
@@ -28,8 +23,5 @@ public class Testaddpatients {
 		p.phoneno=sc.nextLong();
 		obj.addpatient(p);
 		sc.close();
-		
-
-	}
-
+	}s
 }

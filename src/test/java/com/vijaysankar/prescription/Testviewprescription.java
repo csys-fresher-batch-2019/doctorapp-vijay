@@ -14,11 +14,7 @@ public class Testviewprescription {
 		p=s.viewData();
 		for (Prescriptionlist li: p) 
 		{
-			System.out.println(li);
-		
+			System.out.println(li);	
 	}
-		
-	
-
-}
-}
+	}
+	}

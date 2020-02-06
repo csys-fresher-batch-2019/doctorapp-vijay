@@ -11,11 +11,11 @@ public class Testupdatevisited {
 		// TODO Auto-generated method stub
 		Impappointment a= new Impappointment();
 		Appointmentlist b= new Appointmentlist();
-		System.out.println("Enter Patient Id:");
+		System.out.println("Enter Patient Appointment Id:");
 		Scanner sc= new Scanner(System.in);
-		b.patientid=sc.nextInt();
+		b.appid=sc.nextInt();
 		a.updatevisited(b);
-		
+		sc.close();
 		
 
 	}

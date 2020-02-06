@@ -19,6 +19,7 @@ public class Testuserrating {
 		System.out.println("Rating out of 10");
 		a.rating=sc.nextInt();
 		c.addrating(a);
+		sc.close();
 			
 			
 		}
