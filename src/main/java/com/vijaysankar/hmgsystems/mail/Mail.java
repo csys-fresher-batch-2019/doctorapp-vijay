@@ -45,15 +45,16 @@ private static Multipart messageBody(int appid, int patientid, int doctorid, Loc
 BodyPart messageBodyPart1 = new MimeBodyPart();  
 messageBodyPart1.setText("Hello sir ! Please be on time for your appointment to meet your personalized doctor"); 
 BodyPart messageBodyPart2 = new MimeBodyPart();  
-messageBodyPart2.setText("\nAppointment Id :"+appid);  
+messageBodyPart2.setText("Appointment Id :"+appid);  
 BodyPart messageBodyPart3 = new MimeBodyPart();
-messageBodyPart3.setText("\npatient Id :"+patientid);  
+messageBodyPart3.setText("patient Id :"+patientid);  
 BodyPart messageBodyPart4 = new MimeBodyPart();
-messageBodyPart4.setText("\nDoctor Id :"+doctorid); 
+messageBodyPart4.setText("Doctor Id :"+doctorid); 
 BodyPart messageBodyPart5 = new MimeBodyPart();
-messageBodyPart5.setText("\nAppointment time :"+apptime);  
+messageBodyPart5.setText("Appointment time :"+apptime);  
 BodyPart messageBodyPart6 = new MimeBodyPart();
-messageBodyPart6.setText("\nAppointment date :"+appdate);
+messageBodyPart6.setText("Appointment date :"+appdate);
+
 Multipart multipart = new MimeMultipart();  
 multipart.addBodyPart(messageBodyPart1);  
 multipart.addBodyPart(messageBodyPart2);
