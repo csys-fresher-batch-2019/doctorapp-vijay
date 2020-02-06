@@ -4,7 +4,12 @@ import java.time.LocalDate;
 import java.util.Properties;
 import javax.mail.*;    
 import javax.mail.internet.*;
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
 public class Mail
+
+
+//import com.sendgrid.helpers.mail.objects.Email; 
 {  
 public static void send(final String from,final String password,String to,String sub, int appid, int patientid, int doctorid, LocalDate appdate, String apptime) throws IOException
 {  
