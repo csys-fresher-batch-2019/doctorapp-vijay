@@ -19,7 +19,8 @@ public class Impoverall {
 		try(Connection con = connections.TestConnections();
 		Statement stmt=con.createStatement();)
 		{
-		ResultSet rs= stmt.executeQuery(sql1);
+		try(ResultSet rs= stmt.executeQuery(sql1);)
+		{
 		rs.next();
 		float average=rs.getFloat("avg");
 		System.out.println(average);
@@ -29,6 +30,7 @@ public class Impoverall {
 		pst.setInt(2,doctorid);
 		int row=pst.executeUpdate();
 		logger.info(row);
+		}
 		}
 		catch(Dbexception e){
 			throw new Dbexception("Updation of doctor_id in overallrating failed");
@@ -56,7 +58,8 @@ public class Impoverall {
 		try(Connection con = connections.TestConnections();
 		Statement stmt = con.createStatement();)
 		{
-		ResultSet rs = stmt.executeQuery(sql);
+		try(ResultSet rs = stmt.executeQuery(sql);)
+		{
 		while (rs.next()) {
 			Overallrating o = new Overallrating();
 			o.doctor_id = rs.getInt("doctor_id");
@@ -65,8 +68,10 @@ public class Impoverall {
 		}
 		return obj;
 		}
+		}
 		catch(Dbexception e) {
 			throw new Dbexception("selection of overallrating failed");
 		}
 		}
 		}
+

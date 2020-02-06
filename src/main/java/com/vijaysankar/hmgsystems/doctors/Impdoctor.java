@@ -36,7 +36,8 @@ public class Impdoctor {
 		try(Connection con = connections.TestConnections();	
 		Statement stmt=con.createStatement();)
 		{
-		ResultSet rs=stmt.executeQuery(sql);
+		try(ResultSet rs=stmt.executeQuery(sql);)
+		{
 		while(rs.next()) {
 			Doctorlist p2= new Doctorlist();
 			p2.doctorid=rs.getInt("doctor_id");
@@ -44,6 +45,7 @@ public class Impdoctor {
 			p2.splzationid=rs.getInt("splzation_id");
 			p2.consultingfee=rs.getInt("consultingfee");
 			s1.add(p2);
+		}
 		}
 		return s1;
 		}catch(Dbexception e) {

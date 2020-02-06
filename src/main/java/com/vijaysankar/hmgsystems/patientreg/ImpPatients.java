@@ -35,7 +35,8 @@ public class ImpPatients {
 		try(Connection con = connections.TestConnections();	
 		Statement stmt=con.createStatement();)
 		{
-		ResultSet rs=stmt.executeQuery(sql);
+		try(ResultSet rs=stmt.executeQuery(sql);)
+		{
 		while(rs.next()) {
 			Patientreglist p2= new Patientreglist();
 			p2.patientId=rs.getInt("patient_id");
@@ -50,6 +51,7 @@ public class ImpPatients {
 			p2.regdate=rs.getDate("patientReg_date");
 			obj.add(p2);	
 			}
+		}
 		return obj;	
 		}catch(Dbexception e) {
 			throw new Dbexception("Selection from patient Registration failed");

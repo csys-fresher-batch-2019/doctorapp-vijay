@@ -37,12 +37,14 @@ public class Impspecialization {
 		try(Connection con = connections.TestConnections();
 		Statement stmt = con.createStatement();)
 		{
-		ResultSet rs = stmt.executeQuery(sql);
+		try(ResultSet rs = stmt.executeQuery(sql);)
+		{
 		while (rs.next()) {
 			Splzationlist p2 = new Splzationlist();
 			p2.splzationid = rs.getInt("splzation_id");
 			p2.Splzationname = rs.getString("splzation_name");
 			s1.add(p2);
+		}
 		}
 		return s1;
 		}catch(Dbexception e) {
@@ -50,3 +52,4 @@ public class Impspecialization {
 		}
 		}
 		}
+		

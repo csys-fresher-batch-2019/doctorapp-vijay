@@ -27,7 +27,8 @@ public class Impprescription {
 		try(PreparedStatement pst1 = con.prepareStatement(sql1);)
 		{
 		pst1.setString(1, L.doctorname);
-		ResultSet rs = pst1.executeQuery();
+		try(ResultSet rs = pst1.executeQuery();)
+		{
 		if (rs.next()) {
 			fee = rs.getInt("consultingfee");
 		}
@@ -35,6 +36,7 @@ public class Impprescription {
 		pst.setInt(4, total);
 		int rows = pst.executeUpdate();
 		logger.info(rows);
+		}
 		}
 		}catch(Dbexception e) {
 			throw new Dbexception("inserting values into prescription failed");

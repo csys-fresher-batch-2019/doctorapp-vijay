@@ -68,8 +68,10 @@ public ArrayList<Appointmentlist> viewapp() throws Exception{
 	ArrayList<Appointmentlist> obj=new ArrayList<Appointmentlist>();
 	try(Connection con = connections.TestConnections();	
 	Statement stmt=con.createStatement();){
-	ResultSet rs=stmt.executeQuery(sql);
-	while(rs.next()) {
+		try(ResultSet rs=stmt.executeQuery(sql);)
+		{
+	while(rs.next()) 
+		{
 		Appointmentlist h= new Appointmentlist();
 		h.appid=rs.getInt("app_id");
 		h.patientid=rs.getInt("patient_id");
@@ -81,14 +83,15 @@ public ArrayList<Appointmentlist> viewapp() throws Exception{
 		h.status=rs.getString("status");
 		h.visited=rs.getString("visited");
 		obj.add(h);
-		con.close();
-}
+		}
+		}
 	return obj;
 	}catch(Dbexception e) {
 		throw new Dbexception("selection failed");
 	}
 }
 }
+
 
 
 
