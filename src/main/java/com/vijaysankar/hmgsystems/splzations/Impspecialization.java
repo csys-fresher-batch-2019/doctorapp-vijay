@@ -19,11 +19,13 @@ public class Impspecialization {
 		String sql = "insert into splzations values(?,?)";
 		try(Connection con = connections.TestConnections();)
 		{
-		PreparedStatement pst = con.prepareStatement(sql);
+		try(PreparedStatement pst = con.prepareStatement(sql);)
+		{
 		pst.setInt(1, sp.splzationid);
 		pst.setString(2, sp.Splzationname);
 		int rows = pst.executeUpdate();
 		logger.info(rows);
+		}
 		}
 		catch(Dbexception e) {
 			throw new Dbexception("Insertion into specialization failed");

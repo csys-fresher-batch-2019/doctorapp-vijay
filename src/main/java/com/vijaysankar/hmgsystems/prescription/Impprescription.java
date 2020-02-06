@@ -49,7 +49,8 @@ public class Impprescription {
 		try(Connection con = connections.TestConnections();
 		Statement stmt = con.createStatement();)
 		{
-		ResultSet rs = stmt.executeQuery(sql);
+		try(ResultSet rs = stmt.executeQuery(sql);)
+		{
 		while (rs.next()) {
 			Prescriptionlist a = new Prescriptionlist();
 			a.presid = rs.getInt("prescription_id");
@@ -60,6 +61,7 @@ public class Impprescription {
 			p.add(a);
 		}
 		return p;
+		}
 		}catch(Dbexception e) {
 		throw new Dbexception("selection from prescription failed");
 		}

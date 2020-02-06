@@ -25,11 +25,13 @@ public class Impoverall {
 		float average=rs.getFloat("avg");
 		System.out.println(average);
 		String sql = "update overallrating set rating =? where doctor_id=?";
-		PreparedStatement pst= con.prepareStatement(sql);	
+		try(PreparedStatement pst= con.prepareStatement(sql);)
+		{
 		pst.setFloat(1,average);
 		pst.setInt(2,doctorid);
 		int row=pst.executeUpdate();
 		logger.info(row);
+		}
 		}
 		}
 		catch(Dbexception e){
