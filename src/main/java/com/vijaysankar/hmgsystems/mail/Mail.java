@@ -8,8 +8,6 @@ import javax.mail.internet.*;
 import com.vijaysankar.hmgsystems.util.Logger;
 public class Mail
 
-
-//import com.sendgrid.helpers.mail.objects.Email; 
 {  
 	static Logger logger=Logger.getInstance();
 public static void send(final String from,final String password,String to,String sub, int appid, int patientid, int doctorid, LocalDate appdate, String apptime) throws IOException
@@ -47,15 +45,15 @@ private static Multipart messageBody(int appid, int patientid, int doctorid, Loc
 BodyPart messageBodyPart1 = new MimeBodyPart();  
 messageBodyPart1.setText("Hello sir ! Please be on time for your appointment to meet your personalized doctor"); 
 BodyPart messageBodyPart2 = new MimeBodyPart();  
-messageBodyPart2.setText("Appointment Id :"+appid);  
+messageBodyPart2.setText("\nAppointment Id :"+appid);  
 BodyPart messageBodyPart3 = new MimeBodyPart();
-messageBodyPart3.setText("patient Id :"+patientid);  
+messageBodyPart3.setText("\npatient Id :"+patientid);  
 BodyPart messageBodyPart4 = new MimeBodyPart();
-messageBodyPart4.setText("Doctor Id :"+doctorid); 
+messageBodyPart4.setText("\nDoctor Id :"+doctorid); 
 BodyPart messageBodyPart5 = new MimeBodyPart();
-messageBodyPart5.setText("Appointment time :"+apptime);  
+messageBodyPart5.setText("\nAppointment time :"+apptime);  
 BodyPart messageBodyPart6 = new MimeBodyPart();
-messageBodyPart6.setText("Appointment date :"+appdate);
+messageBodyPart6.setText("\nAppointment date :"+appdate);
 
 Multipart multipart = new MimeMultipart();  
 multipart.addBodyPart(messageBodyPart1);  

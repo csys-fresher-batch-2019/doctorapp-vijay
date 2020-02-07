@@ -11,16 +11,16 @@ public class Testaddpatients {
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Enter Registration details \n");
 		System.out.println("Enter patient Name ");
-		p.patientname=sc.next();
+		p.setPatientname(sc.next());
 		System.out.println("Enter patient Adharcard number : ");
-		p.adharno=sc.nextLong();
+		p.setAdharno(sc.nextLong());
 		System.out.println("Enter patient date of birth : ");
 		String dob=sc.next();
-		p.dob = LocalDate.parse(dob);
+		p.setDob(LocalDate.parse(dob));
 		System.out.println("Enter patient Gender");
-		p.gender=sc.next();
+		p.setGender(sc.next());
 		System.out.println("Enter patient phonenumber");
-		p.phoneno=sc.nextLong();
+		p.setPhoneno(sc.nextLong());
 		obj.addpatient(p);
 		sc.close();
 	}

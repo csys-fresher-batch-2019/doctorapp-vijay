@@ -15,13 +15,13 @@ public class Impuserrating {
 		try(Connection con = connections.TestConnections();
 		PreparedStatement pst= con.prepareStatement(sql);)
 		{
-		pst.setInt(1,u.patient_id);	
-		pst.setInt(2,u.doctor_id);
-		pst.setFloat(3,u.rating);
+		pst.setInt(1,u.getPatient_id());	
+		pst.setInt(2,u.getDoctor_id());
+		pst.setFloat(3,u.getRating());
 		int row= pst.executeUpdate();
 		System.out.println(""+row);
 		Impoverall obj=new Impoverall();
-		obj.syncrating(u.doctor_id);
+		obj.syncrating(u.getDoctor_id());
 		}catch(Exception e) {
 			throw new Dbexception("Insertion into Rating failed");
 		}

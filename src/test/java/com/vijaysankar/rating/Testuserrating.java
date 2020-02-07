@@ -13,11 +13,11 @@ public class Testuserrating {
 		Userrating a=new Userrating();
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Enter patient id");
-		a.patient_id=sc.nextInt();
+		a.setPatient_id(sc.nextInt());
 		System.out.println("enter doctor id");
-		a.doctor_id=sc.nextInt();
+		a.setDoctor_id(sc.nextInt());
 		System.out.println("Rating out of 10");
-		a.rating=sc.nextInt();
+		a.setRating(sc.nextInt());
 		c.addrating(a);
 		sc.close();
 			

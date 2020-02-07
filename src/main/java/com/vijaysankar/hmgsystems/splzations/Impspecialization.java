@@ -20,8 +20,8 @@ public class Impspecialization {
 		try(Connection con = connections.TestConnections();
 		PreparedStatement pst = con.prepareStatement(sql);)
 		{
-		pst.setInt(1, sp.splzationid);
-		pst.setString(2, sp.Splzationname);
+		pst.setInt(1, sp.getSplzationid());
+		pst.setString(2, sp.getSplzationname());
 		int rows = pst.executeUpdate();
 		logger.info(rows);
 		}
@@ -42,8 +42,8 @@ public class Impspecialization {
 		{
 		while (rs.next()) {
 			Splzationlist p2 = new Splzationlist();
-			p2.splzationid = rs.getInt("splzation_id");
-			p2.Splzationname = rs.getString("splzation_name");
+			p2.setSplzationid(rs.getInt("splzation_id"));
+			p2.setSplzationname(rs.getString("splzation_name"));
 			s1.add(p2);
 		}
 		}

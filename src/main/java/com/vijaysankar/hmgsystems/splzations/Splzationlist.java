@@ -5,8 +5,20 @@ public class Splzationlist {
 	public String toString() {
 		return "Splzationlist [splzationid=" + splzationid + ", Splzationname=" + Splzationname + "]";
 	}
-	public int splzationid;
-	public String Splzationname;
+	private int splzationid;
+	public int getSplzationid() {
+		return splzationid;
+	}
+	public void setSplzationid(int splzationid) {
+		this.splzationid = splzationid;
+	}
+	public String getSplzationname() {
+		return Splzationname;
+	}
+	public void setSplzationname(String splzationname) {
+		Splzationname = splzationname;
+	}
+	private String Splzationname;
 	
 
 }

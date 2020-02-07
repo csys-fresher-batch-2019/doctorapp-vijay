@@ -3,7 +3,6 @@ package com.vijaysankar.hmgsystems.doctors;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -19,10 +18,10 @@ public class Impdoctor {
 		try(Connection con = connections.TestConnections();
 		PreparedStatement pst= con.prepareStatement(sql);)
 		{	
-		pst.setInt(1,d.doctorid);	
-		pst.setString(2,d.doctorname);
-		pst.setInt(3,d.splzationid);
-		pst.setInt(4,d.consultingfee);
+		pst.setInt(1,d.getDoctorid());	
+		pst.setString(2,d.getDoctorname());
+		pst.setInt(3,d.getSplzationid());
+		pst.setInt(4,d.getConsultingfee());
 		int rows = pst.executeUpdate();
 		logger.info(rows);
 		}
@@ -41,10 +40,10 @@ public class Impdoctor {
 		{
 		while(rs.next()) {
 			Doctorlist p2= new Doctorlist();
-			p2.doctorid=rs.getInt("doctor_id");
-			p2.doctorname=rs.getString("doctor_name");
-			p2.splzationid=rs.getInt("splzation_id");
-			p2.consultingfee=rs.getInt("consultingfee");
+			p2.setDoctorid(rs.getInt("doctor_id"));
+			p2.setDoctorname(rs.getString("doctor_name"));
+			p2.setSplzationid(rs.getInt("splzation_id"));
+			p2.setConsultingfee(rs.getInt("consultingfee"));
 			s1.add(p2);
 		}
 		}

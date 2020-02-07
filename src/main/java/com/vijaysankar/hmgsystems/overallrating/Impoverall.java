@@ -1,4 +1,5 @@
 package com.vijaysankar.hmgsystems.overallrating;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,70 +11,61 @@ import com.vijaysankar.hmgsystems.patientreg.connections;
 import com.vijaysankar.hmgsystems.util.Logger;
 
 public class Impoverall {
-		
-	Logger logger=Logger.getInstance();
 
-	public void syncrating(int doctorid) throws Dbexception{
-		
-		String sql1="select avg(rating) as avg from rating where doctor_id="+doctorid;
-		try(Connection con = connections.TestConnections();
-		Statement stmt=con.createStatement();)
+	Logger logger = Logger.getInstance();
+
+	public void syncrating(int doctorid) throws Dbexception {
+		String sql1 = "select avg(rating) as avg from rating where doctor_id=?";
+		try (Connection con = connections.TestConnections();
+			PreparedStatement pst = con.prepareStatement(sql1);)
 		{
-		try(ResultSet rs= stmt.executeQuery(sql1);)
-		{
-		rs.next();
-		float average=rs.getFloat("avg");
-		System.out.println(average);
-		String sql = "update overallrating set rating =? where doctor_id=?";
-		try(PreparedStatement pst= con.prepareStatement(sql);)
-		{
-		pst.setFloat(1,average);
-		pst.setInt(2,doctorid);
-		int row=pst.executeUpdate();
-		logger.info(row);
-		}
-		}
-		}
-		catch(Exception e){
+			pst.setInt(1, doctorid);
+			try (ResultSet rs = pst.executeQuery();) 
+			{
+				rs.next();
+				float average = rs.getFloat("avg");
+				System.out.println(average);
+				String sql = "update overallrating set rating =? where doctor_id=?";
+				try (PreparedStatement pst1 = con.prepareStatement(sql);) {
+					pst1.setFloat(1, average);
+					pst1.setInt(2, doctorid);
+					int row = pst1.executeUpdate();
+					logger.info(row);
+				}
+			}
+		} catch (Exception e) {
 			throw new Dbexception("Updation of doctor_id in overallrating failed");
 		}
-		}
-	
-	public void add(Overallrating o) throws Dbexception{
-		
-		String sql="insert into overallrating(doctor_id) values(?)";
-		try(Connection con=connections.TestConnections();
-		PreparedStatement pst=con.prepareStatement(sql);)
-		{
-		pst.setInt(1, o.doctor_id);
-		int row = pst.executeUpdate();
-		logger.info(row);
-		}
-		catch(Exception e) {
+	}
+
+	public void add(Overallrating o) throws Dbexception {
+
+		String sql = "insert into overallrating(doctor_id) values(?)";
+		try (Connection con = connections.TestConnections(); PreparedStatement pst = con.prepareStatement(sql);) {
+			pst.setInt(1, o.getDoctor_id());
+			int row = pst.executeUpdate();
+			logger.info(row);
+		} catch (Exception e) {
 			throw new Dbexception("inserting doctor_id in overallrating failed");
 		}
-		}
-	
-	public ArrayList<Overallrating> viewrating() throws Dbexception{
+	}
+
+	public ArrayList<Overallrating> viewrating() throws Dbexception {
 		String sql = "select * from overallrating ";
-		ArrayList<Overallrating> obj=new ArrayList<Overallrating>();
-		try(Connection con = connections.TestConnections();
-		Statement stmt = con.createStatement();)
-		{
-		try(ResultSet rs = stmt.executeQuery(sql);)
-		{
-		while (rs.next()) {
-			Overallrating o = new Overallrating();
-			o.doctor_id = rs.getInt("doctor_id");
-			o.rating = rs.getInt("rating");
-			obj.add(o);
-		}
-		return obj;
-		}
-		}
-		catch(Exception e) {
+		ArrayList<Overallrating> obj = new ArrayList<Overallrating>();
+		try (Connection con = connections.TestConnections();
+				Statement stmt = con.createStatement();) {
+			try (ResultSet rs = stmt.executeQuery(sql);) {
+				while (rs.next()) {
+					Overallrating o = new Overallrating();
+					o.setDoctor_id(rs.getInt("doctor_id"));
+					o.setRating(rs.getInt("rating"));
+					obj.add(o);
+				}
+				return obj;
+			}
+		} catch (Exception e) {
 			throw new Dbexception("selection of overallrating failed");
 		}
-		}
-		}
-
+	}
+}

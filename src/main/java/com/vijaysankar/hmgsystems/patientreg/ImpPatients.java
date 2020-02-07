@@ -17,12 +17,12 @@ public class ImpPatients {
 		try(Connection con = connections.TestConnections();
 		PreparedStatement pst= con.prepareStatement(sql);)
 		{
-		pst.setString(1,p1.patientname);	
-		pst.setLong(2,p1.adharno );
-		java.sql.Date dat = java.sql.Date.valueOf(p1.dob);
+		pst.setString(1,p1.getPatientname());	
+		pst.setLong(2,p1.getAdharno() );
+		java.sql.Date dat = java.sql.Date.valueOf(p1.getDob());
 		pst.setDate(3,dat);
-		pst.setString(4,p1.gender );	
-		pst.setLong(5,p1.phoneno );
+		pst.setString(4,p1.getGender() );	
+		pst.setLong(5,p1.getPhoneno() );
 		int rows= pst.executeUpdate();
 		logger.info(rows);
 	}catch(Exception e) {
@@ -39,16 +39,16 @@ public class ImpPatients {
 		{
 		while(rs.next()) {
 			Patientreglist p2= new Patientreglist();
-			p2.patientId=rs.getInt("patient_id");
-			p2.patientname=rs.getString("patientname");
-			p2.adharno=rs.getLong("adharcardno");
+			p2.setPatientId(rs.getInt("patient_id"));
+			p2.setPatientname(rs.getString("patientname"));
+			p2.setAdharno(rs.getLong("adharcardno"));
 			Date st=rs.getDate("dob");
 			if (st != null) {
-			p2.dob=st.toLocalDate();
+			p2.setDob(st.toLocalDate());
 			}
-			p2.gender=rs.getString("gender");
-			p2.phoneno=rs.getLong("phoneno");
-			p2.regdate=rs.getDate("patientReg_date");
+			p2.setGender(rs.getString("gender"));
+			p2.setPhoneno(rs.getLong("phoneno"));
+			p2.setRegdate(rs.getDate("patientReg_date"));
 			obj.add(p2);	
 			}
 		}

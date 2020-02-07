@@ -15,11 +15,6 @@ public class Testviewapp {
 		for (Appointmentlist pa: obj) {
 			System.out.println(pa);
 		}
-		
-
-		
-		
-		
 
 	}
 

@@ -21,12 +21,12 @@ public class Impappointment {
 		try(Connection con = connections.TestConnections();
 		PreparedStatement pst= con.prepareStatement(sql);)
 		{
-		pst.setInt(1,a.appid);
-		pst.setInt(2,a.patientid);	
-		pst.setString(3,a.purpose);
-		pst.setInt(4,a.doctorid);
-		pst.setDate(5,Date.valueOf(a.appdate));		
-		pst.setString(6, a.apptime);
+		pst.setInt(1,a.getAppid());
+		pst.setInt(2,a.getPatientid());	
+		pst.setString(3,a.getPurpose());
+		pst.setInt(4,a.getDoctorid());
+		pst.setDate(5,Date.valueOf(a.getAppdate()));		
+		pst.setString(6, a.getApptime());
 		int rows = pst.executeUpdate();
 		logger.info(rows);
 		}
@@ -40,7 +40,7 @@ public class Impappointment {
 		try(Connection con = connections.TestConnections();
 		PreparedStatement pst= con.prepareStatement(sql);)	
 		{
-		pst.setInt(1,b.appid);	
+		pst.setInt(1,b.getAppid());	
 		int rows = pst.executeUpdate();
 		logger.info(rows);
 		}
@@ -54,7 +54,7 @@ public void updatevisited(Appointmentlist c) throws Dbexception{
 		try(Connection con = connections.TestConnections();
 		PreparedStatement pst= con.prepareStatement(sql1);)
 		{
-		pst.setInt(1,c.appid);	
+		pst.setInt(1,c.getAppid());	
 		int rows = pst.executeUpdate();
 		logger.info(rows);
 		}
@@ -73,15 +73,15 @@ public ArrayList<Appointmentlist> viewapp() throws Dbexception{
 	while(rs.next()) 
 		{
 		Appointmentlist h= new Appointmentlist();
-		h.appid=rs.getInt("app_id");
-		h.patientid=rs.getInt("patient_id");
-		h.purpose=rs.getString("purpose");
-		h.doctorid=rs.getInt("doctor_id");
+		h.setAppid(rs.getInt("app_id"));
+		h.setPatientid(rs.getInt("patient_id"));
+		h.setPurpose(rs.getString("purpose"));
+		h.setDoctorid(rs.getInt("doctor_id"));
 		Date st=rs.getDate("app_date");
-		h.appdate=st.toLocalDate();
-		h.apptime=rs.getString("app_time");
-		h.status=rs.getString("status");
-		h.visited=rs.getString("visited");
+		h.setAppdate(st.toLocalDate());
+		h.setApptime(rs.getString("app_time"));
+		h.setStatus(rs.getString("status"));
+		h.setVisited(rs.getString("visited"));
 		obj.add(h);
 		}
 		}

@@ -18,11 +18,7 @@ public class Testaddspl {
 		System.out.println("Enter Specialization name ");
 		s1.Splzationname=sc.next();
 		s.addspecialization(s1);
-		
 		sc.close();
-		
-		
-
 	}
 
 }
