@@ -4,13 +4,14 @@ import java.time.LocalDate;
 import java.util.Properties;
 import javax.mail.*;    
 import javax.mail.internet.*;
-import javax.activation.DataHandler;
-import javax.activation.FileDataSource;
+
+import com.vijaysankar.hmgsystems.util.Logger;
 public class Mail
 
 
 //import com.sendgrid.helpers.mail.objects.Email; 
 {  
+	static Logger logger=Logger.getInstance();
 public static void send(final String from,final String password,String to,String sub, int appid, int patientid, int doctorid, LocalDate appdate, String apptime) throws IOException
 {  
 Properties props = new Properties();    
@@ -18,9 +19,10 @@ Properties props = new Properties();
        props.put("mail.smtp.socketFactory.port", "465");    
        props.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");    
        props.put("mail.smtp.auth", "true");    
-       props.put("mail.smtp.port", "465");    
+       props.put("mail.smtp.port", "465");   
+       props.put("mail.smtp.ssl.checkserveridentity", true);
        Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() 
-       {    
+       {     @Override 
        	protected PasswordAuthentication getPasswordAuthentication() 
        	{    
        	return new PasswordAuthentication(from,password);  
@@ -34,7 +36,7 @@ Properties props = new Properties();
        	Multipart multipart = messageBody(appid,patientid,doctorid,appdate,apptime);
            message.setContent(multipart );  
        	Transport.send(message);    
-       	System.out.println("message sent successfully");    
+       	logger.info("message sent successfully");    
        }
        catch (MessagingException e) 
        {
