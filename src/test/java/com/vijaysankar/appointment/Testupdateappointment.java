@@ -15,7 +15,7 @@ public class Testupdateappointment {
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Update patient status \n");
 		System.out.println("Enter patient's Appointment ID");
-		a.appid=sc.nextInt();
+		a.setAppid(sc.nextInt());
 		i.updateappointment(a);
 		sc.close();
 	}

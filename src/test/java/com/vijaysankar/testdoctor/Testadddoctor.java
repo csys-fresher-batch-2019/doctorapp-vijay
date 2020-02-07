@@ -14,13 +14,13 @@ public class Testadddoctor {
 	Scanner sc=new Scanner(System.in);
 	System.out.println("Enter doctor details \n");
 	System.out.println("Enter doctorid ");
-	d.doctorid=sc.nextInt();
+	d.setDoctorid(sc.nextInt());
 	System.out.println("Enter doctor name : ");
-	d.doctorname=sc.next();
+	d.setDoctorname(sc.next());
 	System.out.println("Enter specializationid : ");
-	d.splzationid=sc.nextInt();
+	d.setSplzationid(sc.nextInt());
 	System.out.println("Enter consulting fee ");
-	d.consultingfee=sc.nextInt();
+	d.setConsultingfee(sc.nextInt());
 	
 	i.adddoctor(d);
 	sc.close();

@@ -9,7 +9,7 @@ public class TestdocidAdd {
 		Overallrating a=new Overallrating();
 		Scanner sc=new Scanner(System.in);
 		System.out.println("enter doctor id");
-		a.doctor_id=sc.nextInt();
+		a.setDoctor_id(sc.nextInt());
 		c.add(a);
 		sc.close();
 	}

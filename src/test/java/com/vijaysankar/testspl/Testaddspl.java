@@ -14,9 +14,9 @@ public class Testaddspl {
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Enter Specialization details \n");
 		System.out.println("Enter specializationid ");
-		s1.splzationid=sc.nextInt();
+		s1.setSplzationid(sc.nextInt());
 		System.out.println("Enter Specialization name ");
-		s1.Splzationname=sc.next();
+		s1.setSplzationname(sc.next());
 		s.addspecialization(s1);
 		sc.close();
 	}

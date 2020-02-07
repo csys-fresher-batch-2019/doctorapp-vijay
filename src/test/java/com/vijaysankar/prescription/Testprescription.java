@@ -8,14 +8,14 @@ public class Testprescription {
 		Impprescription M=new Impprescription();
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Enter patient name:");
-		L.patientname=sc.next();
+		L.setPatientname(sc.next());
 		System.out.println("Enter doctor name:");
-		L.doctorname=sc.next();
+		L.setDoctorname(sc.next());
 		System.out.println("Enter comments :");
-		L.comments=sc.next();
+		L.setComments(sc.next());
 		System.out.println("Any other fee: ");
 		int a=sc.nextInt();
-		L.totalamt=a;
+		L.setTotalamt(a);
 		M.addData(L);
 		sc.close();
 	}

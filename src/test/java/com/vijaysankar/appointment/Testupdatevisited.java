@@ -13,7 +13,7 @@ public class Testupdatevisited {
 		Appointmentlist b= new Appointmentlist();
 		System.out.println("Enter Patient's Appointment Id:");
 		Scanner sc= new Scanner(System.in);
-		b.appid=sc.nextInt();
+		b.setAppid(sc.nextInt());
 		a.updatevisited(b);
 		sc.close();
 		

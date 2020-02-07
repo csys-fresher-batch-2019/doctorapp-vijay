@@ -18,23 +18,23 @@ public class Testappointmentlist {
 		Impappointment p=new Impappointment();
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Enter Appointment details \n");
-		m.appid=Randomnumber.getrandom();
+		m.setAppid(Randomnumber.getrandom());
 		System.out.println("Enter Patientid ");
-		m.patientid=sc.nextInt();
+		m.setPatientid(sc.nextInt());
 		System.out.println("Enter Purpose ");
-		m.purpose=sc.next();
+		m.setPurpose(sc.next());
 		System.out.println("Enter Doctorid ");
-		m.doctorid=sc.nextInt();
+		m.setDoctorid(sc.nextInt());
 		System.out.println("Enter Appointment date ");
 		String a=sc.next();
 		LocalDate sr=LocalDate.parse(a);
-		m.appdate=sr;
+		m.setAppdate(sr);
 		System.out.println("Enter Appointment Time "); 
-		m.apptime=sc.next();
+		m.setApptime(sc.next());
 		System.out.println("Enter your mailId for notifications:");
 		String mail=sc.next();
 		p.addappointment(m);
-		Testconfirm.main(m.appid,m.patientid,m.doctorid,m.appdate,m.apptime,mail);
+		Testconfirm.main(m.getAppid(),m.getPatientid(),m.getDoctorid(),m.getAppdate(),m.getApptime(),mail);
 		sc.close();	
 	}
 }
