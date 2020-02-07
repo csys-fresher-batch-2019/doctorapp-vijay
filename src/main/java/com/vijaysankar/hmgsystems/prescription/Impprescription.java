@@ -13,7 +13,7 @@ public class Impprescription {
 		
 	Logger logger=Logger.getInstance();
 
-	public void addData(Prescriptionlist L) throws Exception {
+	public void addData(Prescriptionlist L) throws Dbexception {
 		int fee = 0;
 		String sql = "insert into prescription(prescription_id,patient_name,doctorname,comments,total_amt)values(prescription_id.nextval,?,?,?,?)";
 
@@ -38,11 +38,11 @@ public class Impprescription {
 		logger.info(rows);
 		}
 		}
-		}catch(Dbexception e) {
+		}catch(Exception e) {
 			throw new Dbexception("inserting values into prescription failed");
 		}	
 	}
-	public ArrayList<Prescriptionlist> viewData() throws Exception {
+	public ArrayList<Prescriptionlist> viewData() throws Dbexception {
 		
 		String sql = "select * from prescription ";
 		ArrayList<Prescriptionlist> p = new ArrayList<Prescriptionlist>();
@@ -62,7 +62,7 @@ public class Impprescription {
 		}
 		return p;
 		}
-		}catch(Dbexception e) {
+		}catch(Exception e) {
 		throw new Dbexception("selection from prescription failed");
 		}
 		}

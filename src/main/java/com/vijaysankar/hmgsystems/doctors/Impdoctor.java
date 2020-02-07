@@ -3,6 +3,7 @@ package com.vijaysankar.hmgsystems.doctors;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ import com.vijaysankar.hmgsystems.util.Logger;
 public class Impdoctor {	
 	Logger logger=Logger.getInstance();
 
-	public void adddoctor(Doctorlist d) throws Exception{
+	public void adddoctor(Doctorlist d) throws Dbexception{
 		String sql = "insert into doctorlist values(?,?,?,?)";
 		try(Connection con = connections.TestConnections();
 		PreparedStatement pst= con.prepareStatement(sql);)
@@ -25,12 +26,12 @@ public class Impdoctor {
 		int rows = pst.executeUpdate();
 		logger.info(rows);
 		}
-		catch(Dbexception e) {
+		catch(Exception e) {
 		throw new Dbexception("insertion doctorlist failed");	
 		}
 		}
 
-	public ArrayList<Doctorlist> viewdoctor() throws Exception{
+	public ArrayList<Doctorlist> viewdoctor() throws Dbexception{
 		String sql = "select * from doctorlist";
 		ArrayList<Doctorlist> s1= new ArrayList<Doctorlist>();
 		try(Connection con = connections.TestConnections();	
@@ -48,7 +49,7 @@ public class Impdoctor {
 		}
 		}
 		return s1;
-		}catch(Dbexception e) {
+		}catch(Exception e) {
 		throw new Dbexception("selection doctorlist failed");	
 		}
 		}

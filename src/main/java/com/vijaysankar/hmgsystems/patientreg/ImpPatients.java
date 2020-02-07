@@ -12,7 +12,7 @@ public class ImpPatients {
 		
 	Logger logger=Logger.getInstance();
 
-	public void addpatient(Patientreglist p1) throws Exception{
+	public void addpatient(Patientreglist p1) throws Dbexception{
 		String sql = "insert into patientReg(patient_id,patientname,adharcardno,dob,gender,phoneno,patientreg_date)values(patient_id.nextval,?,?,?,?,?,sysdate)";
 		try(Connection con = connections.TestConnections();
 		PreparedStatement pst= con.prepareStatement(sql);)
@@ -25,11 +25,11 @@ public class ImpPatients {
 		pst.setLong(5,p1.phoneno );
 		int rows= pst.executeUpdate();
 		logger.info(rows);
-	}catch(Dbexception e) {
+	}catch(Exception e) {
 		throw new Dbexception("Insertion into patient Registration failed");
 	}
 	}
-	public ArrayList<Patientreglist> viewpatient() throws Exception{
+	public ArrayList<Patientreglist> viewpatient() throws Dbexception{
 		String sql = "select * from patientReg";
 		ArrayList<Patientreglist> obj=new ArrayList<Patientreglist>();
 		try(Connection con = connections.TestConnections();	
@@ -53,7 +53,7 @@ public class ImpPatients {
 			}
 		}
 		return obj;	
-		}catch(Dbexception e) {
+		}catch(Exception e) {
 			throw new Dbexception("Selection from patient Registration failed");
 		}
 		}

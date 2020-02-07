@@ -9,7 +9,7 @@ import com.vijaysankar.hmgsystems.patientreg.connections;
 
 public class Impuserrating {
 	
-	public void addrating(Userrating u) throws Exception{
+	public void addrating(Userrating u) throws Dbexception{
 	
 		String sql = "insert into rating values(?,?,?)";
 		try(Connection con = connections.TestConnections();
@@ -22,7 +22,7 @@ public class Impuserrating {
 		System.out.println(""+row);
 		Impoverall obj=new Impoverall();
 		obj.syncrating(u.doctor_id);
-		}catch(Dbexception e) {
+		}catch(Exception e) {
 			throw new Dbexception("Insertion into Rating failed");
 		}
 		}

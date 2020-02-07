@@ -14,7 +14,7 @@ import com.vijaysankar.hmgsystems.util.Logger;
 public class Impappointment {
 	Logger logger=Logger.getInstance();
 	
-	public void addappointment(Appointmentlist a) throws Exception{
+	public void addappointment(Appointmentlist a) throws Dbexception{
 		
 		
 		String sql = "insert into appointment (app_id,patient_id,purpose,doctor_id,app_date,app_time) values(?,?,?,?,?,?)";      
@@ -30,12 +30,12 @@ public class Impappointment {
 		int rows = pst.executeUpdate();
 		logger.info(rows);
 		}
-		catch(Dbexception e){
+		catch(Exception e){
 			throw new Dbexception("Appointment insertion failed");
 	}
 	}
 	
-	public void updateappointment(Appointmentlist b) throws Exception{
+	public void updateappointment(Appointmentlist b) throws Dbexception{
 		String sql= "update appointment set status='approved' where app_id= ?";
 		try(Connection con = connections.TestConnections();
 		PreparedStatement pst= con.prepareStatement(sql);)	
@@ -44,11 +44,11 @@ public class Impappointment {
 		int rows = pst.executeUpdate();
 		logger.info(rows);
 		}
-		catch(Dbexception e) {
+		catch(Exception e) {
 			throw new Dbexception("Appointment approve status failed");
 		}
 		}
-public void updatevisited(Appointmentlist c) throws Exception{
+public void updatevisited(Appointmentlist c) throws Dbexception{
 		
 		String sql1= "update appointment set visited = 'yes' where app_id=?";
 		try(Connection con = connections.TestConnections();
@@ -58,11 +58,11 @@ public void updatevisited(Appointmentlist c) throws Exception{
 		int rows = pst.executeUpdate();
 		logger.info(rows);
 		}
-		catch(Dbexception e) {
+		catch(Exception e) {
 			throw new Dbexception("Appointment visited status failed");
 		}
 		}
-public ArrayList<Appointmentlist> viewapp() throws Exception{
+public ArrayList<Appointmentlist> viewapp() throws Dbexception{
 	
 	String sql = "select * from appointment ";
 	ArrayList<Appointmentlist> obj=new ArrayList<Appointmentlist>();
@@ -86,11 +86,11 @@ public ArrayList<Appointmentlist> viewapp() throws Exception{
 		}
 		}
 	return obj;
-	}catch(Dbexception e) {
+	}catch(Exception e) {
 		throw new Dbexception("selection failed");
 	}
-}
-}
+	}
+	}
 
 
 

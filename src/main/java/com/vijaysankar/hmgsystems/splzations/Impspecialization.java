@@ -14,25 +14,24 @@ public class Impspecialization {
 	
 	Logger logger=Logger.getInstance();
 
-	public void addspecialization(Splzationlist sp) throws Exception {
+	public void addspecialization(Splzationlist sp) throws Dbexception {
 		
 		String sql = "insert into splzations values(?,?)";
-		try(Connection con = connections.TestConnections();)
-		{
-		try(PreparedStatement pst = con.prepareStatement(sql);)
+		try(Connection con = connections.TestConnections();
+		PreparedStatement pst = con.prepareStatement(sql);)
 		{
 		pst.setInt(1, sp.splzationid);
 		pst.setString(2, sp.Splzationname);
 		int rows = pst.executeUpdate();
 		logger.info(rows);
 		}
-		}
-		catch(Dbexception e) {
+		
+		catch(Exception e) {
 			throw new Dbexception("Insertion into specialization failed");
 		}
 		}
 	
-	public ArrayList<Splzationlist> viewspl() throws Exception {
+	public ArrayList<Splzationlist> viewspl() throws Dbexception {
 		
 		String sql = "select * from splzations";
 		ArrayList<Splzationlist> s1 = new ArrayList<Splzationlist>();
@@ -49,7 +48,7 @@ public class Impspecialization {
 		}
 		}
 		return s1;
-		}catch(Dbexception e) {
+		}catch(Exception e) {
 			throw new Dbexception("selection from specializations failed");
 		}
 		}

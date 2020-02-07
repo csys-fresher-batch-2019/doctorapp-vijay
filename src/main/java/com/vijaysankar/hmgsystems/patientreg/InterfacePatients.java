@@ -6,8 +6,4 @@ public interface InterfacePatients {
 	
 	public void addpatient(Patientreglist p) throws Exception;
 	public ArrayList<Patientreglist> viewpatient() throws Exception;
-
-	
-
-
 }

@@ -13,7 +13,7 @@ public class Impoverall {
 		
 	Logger logger=Logger.getInstance();
 
-	public void syncrating(int doctorid) throws Exception{
+	public void syncrating(int doctorid) throws Dbexception{
 		
 		String sql1="select avg(rating) as avg from rating where doctor_id="+doctorid;
 		try(Connection con = connections.TestConnections();
@@ -34,12 +34,12 @@ public class Impoverall {
 		}
 		}
 		}
-		catch(Dbexception e){
+		catch(Exception e){
 			throw new Dbexception("Updation of doctor_id in overallrating failed");
 		}
 		}
 	
-	public void add(Overallrating o) throws Exception{
+	public void add(Overallrating o) throws Dbexception{
 		
 		String sql="insert into overallrating(doctor_id) values(?)";
 		try(Connection con=connections.TestConnections();
@@ -49,12 +49,12 @@ public class Impoverall {
 		int row = pst.executeUpdate();
 		logger.info(row);
 		}
-		catch(Dbexception e) {
+		catch(Exception e) {
 			throw new Dbexception("inserting doctor_id in overallrating failed");
 		}
 		}
 	
-	public ArrayList<Overallrating> viewrating() throws Exception{
+	public ArrayList<Overallrating> viewrating() throws Dbexception{
 		String sql = "select * from overallrating ";
 		ArrayList<Overallrating> obj=new ArrayList<Overallrating>();
 		try(Connection con = connections.TestConnections();
@@ -71,7 +71,7 @@ public class Impoverall {
 		return obj;
 		}
 		}
-		catch(Dbexception e) {
+		catch(Exception e) {
 			throw new Dbexception("selection of overallrating failed");
 		}
 		}

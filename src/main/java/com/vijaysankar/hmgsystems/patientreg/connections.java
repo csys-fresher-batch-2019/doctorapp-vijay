@@ -10,5 +10,4 @@ public class connections {
 		System.out.println(connection);
 		return connection;
 	}
-
 }
