@@ -9,7 +9,7 @@ public class Testviewrating {
 
 	public static void main(String[] args) throws Exception {
 		Impoverall i=new Impoverall();
-		ArrayList<Overallrating> o=new ArrayList<Overallrating>();
+		ArrayList<Overallrating> o=new ArrayList<>();
 		o=i.viewrating();
 		for(Overallrating rt:o) {
 			System.out.println(rt);

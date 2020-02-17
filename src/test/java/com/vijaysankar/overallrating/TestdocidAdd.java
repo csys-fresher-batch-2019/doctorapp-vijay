@@ -10,7 +10,7 @@ public class TestdocidAdd {
 		Scanner sc=new Scanner(System.in);
 		System.out.println("enter doctor id");
 		a.setDoctor_id(sc.nextInt());
-		c.add(a);
+		
 		sc.close();
 	}
 }

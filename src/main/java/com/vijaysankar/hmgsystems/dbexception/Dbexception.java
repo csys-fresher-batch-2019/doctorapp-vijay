@@ -7,4 +7,8 @@ public class Dbexception extends Exception{
 		super(msg);
 	}
 
+	public Dbexception(String string, Exception e) {
+		super (string,e);
+	}
+
 }

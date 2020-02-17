@@ -10,7 +10,7 @@ public class TestviewReg {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		ImpPatients obj = new ImpPatients();
-		ArrayList<Patientreglist> patient = new ArrayList<Patientreglist>();			
+		ArrayList<Patientreglist> patient = new ArrayList<>();			
 		patient=obj.viewpatient();
 		for (Patientreglist patientlist: patient) {
 			System.out.println(patientlist);

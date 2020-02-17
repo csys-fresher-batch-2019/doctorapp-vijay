@@ -17,7 +17,7 @@ public class Appointmentlist {
 	private String apptime;
 	private String status;
 	private String visited;
-	
+	private String email;
 	public int getAppid() {
 		return appid;
 	}
@@ -65,6 +65,12 @@ public class Appointmentlist {
 	}
 	public void setVisited(String visited) {
 		this.visited = visited;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 }

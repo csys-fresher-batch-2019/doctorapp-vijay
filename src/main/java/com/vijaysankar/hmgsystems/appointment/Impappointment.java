@@ -14,33 +14,33 @@ import com.vijaysankar.hmgsystems.util.Logger;
 public class Impappointment {
 	Logger logger=Logger.getInstance();
 	
-	public void addappointment(Appointmentlist a) throws Dbexception{
+	public void addappointment(Appointmentlist adapp) throws Dbexception{
 		
 		
 		String sql = "insert into appointment (app_id,patient_id,purpose,doctor_id,app_date,app_time) values(?,?,?,?,?,?)";      
 		try(Connection con = connections.TestConnections();
 		PreparedStatement pst= con.prepareStatement(sql);)
 		{
-		pst.setInt(1,a.getAppid());
-		pst.setInt(2,a.getPatientid());	
-		pst.setString(3,a.getPurpose());
-		pst.setInt(4,a.getDoctorid());
-		pst.setDate(5,Date.valueOf(a.getAppdate()));		
-		pst.setString(6, a.getApptime());
+		pst.setInt(1,adapp.getAppid());
+		pst.setInt(2,adapp.getPatientid());	
+		pst.setString(3,adapp.getPurpose());
+		pst.setInt(4,adapp.getDoctorid());
+		pst.setDate(5,Date.valueOf(adapp.getAppdate()));		
+		pst.setString(6, adapp.getApptime());
 		int rows = pst.executeUpdate();
 		logger.info(rows);
 		}
 		catch(Exception e){
-			throw new Dbexception("Appointment insertion failed");
+			throw new Dbexception("Appointment insertion failed", e);
 	}
 	}
 	
-	public void updateappointment(Appointmentlist b) throws Dbexception{
+	public void updateappointment(int pid) throws Dbexception{
 		String sql= "update appointment set status='approved' where app_id= ?";
 		try(Connection con = connections.TestConnections();
 		PreparedStatement pst= con.prepareStatement(sql);)	
 		{
-		pst.setInt(1,b.getAppid());	
+		pst.setInt(1,pid);	
 		int rows = pst.executeUpdate();
 		logger.info(rows);
 		}
@@ -48,13 +48,13 @@ public class Impappointment {
 			throw new Dbexception("Appointment approve status failed");
 		}
 		}
-public void updatevisited(Appointmentlist c) throws Dbexception{
+public void updatevisited(int aid) throws Dbexception{
 		
 		String sql1= "update appointment set visited = 'yes' where app_id=?";
 		try(Connection con = connections.TestConnections();
 		PreparedStatement pst= con.prepareStatement(sql1);)
 		{
-		pst.setInt(1,c.getAppid());	
+		pst.setInt(1,aid);	
 		int rows = pst.executeUpdate();
 		logger.info(rows);
 		}
@@ -64,7 +64,7 @@ public void updatevisited(Appointmentlist c) throws Dbexception{
 		}
 public ArrayList<Appointmentlist> viewapp() throws Dbexception{
 	
-	String sql = "select * from appointment ";
+	String sql = "select * from appointment order by app_date desc";
 	ArrayList<Appointmentlist> obj=new ArrayList<Appointmentlist>();
 	try(Connection con = connections.TestConnections();	
 	Statement stmt=con.createStatement();){

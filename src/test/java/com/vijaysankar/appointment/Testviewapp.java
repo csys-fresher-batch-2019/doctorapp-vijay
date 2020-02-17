@@ -9,9 +9,9 @@ public class Testviewapp {
 
 	public static void main(String[] args) throws Exception {
 		
-		Impappointment x=new Impappointment();
-		ArrayList<Appointmentlist> obj=new ArrayList<Appointmentlist>();
-		obj=x.viewapp();
+		Impappointment impapp=new Impappointment();
+		ArrayList<Appointmentlist> obj=new ArrayList<>();
+		obj=impapp.viewapp();
 		for (Appointmentlist pa: obj) {
 			System.out.println(pa);
 		}

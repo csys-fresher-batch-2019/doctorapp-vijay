@@ -20,10 +20,7 @@ public class Testuserrating {
 		a.setRating(sc.nextInt());
 		c.addrating(a);
 		sc.close();
-			
-			
-		}
-
+	}
 	}
 
 

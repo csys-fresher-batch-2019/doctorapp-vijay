@@ -38,11 +38,12 @@ public class Impoverall {
 		}
 	}
 
-	public void add(Overallrating o) throws Dbexception {
+	public void add(int doc) throws Dbexception {
 
 		String sql = "insert into overallrating(doctor_id) values(?)";
-		try (Connection con = connections.TestConnections(); PreparedStatement pst = con.prepareStatement(sql);) {
-			pst.setInt(1, o.getDoctor_id());
+		try (Connection con = connections.TestConnections(); 
+				PreparedStatement pst = con.prepareStatement(sql);) {
+			pst.setInt(1, doc);
 			int row = pst.executeUpdate();
 			logger.info(row);
 		} catch (Exception e) {

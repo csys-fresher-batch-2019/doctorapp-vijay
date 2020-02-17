@@ -12,17 +12,17 @@ public class ImpPatients {
 		
 	Logger logger=Logger.getInstance();
 
-	public void addpatient(Patientreglist p1) throws Dbexception{
+	public void addpatient(Patientreglist adpatreg) throws Dbexception{
 		String sql = "insert into patientReg(patient_id,patientname,adharcardno,dob,gender,phoneno,patientreg_date)values(patient_id.nextval,?,?,?,?,?,sysdate)";
 		try(Connection con = connections.TestConnections();
 		PreparedStatement pst= con.prepareStatement(sql);)
 		{
-		pst.setString(1,p1.getPatientname());	
-		pst.setLong(2,p1.getAdharno() );
-		java.sql.Date dat = java.sql.Date.valueOf(p1.getDob());
+		pst.setString(1,adpatreg.getPatientname());	
+		pst.setLong(2,adpatreg.getAdharno() );
+		java.sql.Date dat = java.sql.Date.valueOf(adpatreg.getDob());
 		pst.setDate(3,dat);
-		pst.setString(4,p1.getGender() );	
-		pst.setLong(5,p1.getPhoneno() );
+		pst.setString(4,adpatreg.getGender() );	
+		pst.setLong(5,adpatreg.getPhoneno() );
 		int rows= pst.executeUpdate();
 		logger.info(rows);
 	}catch(Exception e) {

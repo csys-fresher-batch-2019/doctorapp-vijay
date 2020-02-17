@@ -11,7 +11,7 @@ public class Testviewdoctor {
 		// TODO Auto-generated method stub
 		
 		Impdoctor o=new Impdoctor();
-		ArrayList<Doctorlist> s1= new ArrayList<Doctorlist>();
+		ArrayList<Doctorlist> s1= new ArrayList<>();
 		s1=o.viewdoctor();
 		for(Doctorlist d:s1) {
 			System.out.println(d);

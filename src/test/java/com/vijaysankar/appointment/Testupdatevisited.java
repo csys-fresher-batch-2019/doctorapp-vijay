@@ -9,12 +9,13 @@ public class Testupdatevisited {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		Impappointment a= new Impappointment();
-		Appointmentlist b= new Appointmentlist();
+		Impappointment impapp= new Impappointment();
+		Appointmentlist appli= new Appointmentlist();
 		System.out.println("Enter Patient's Appointment Id:");
 		Scanner sc= new Scanner(System.in);
-		b.setAppid(sc.nextInt());
-		a.updatevisited(b);
+		appli.setAppid(sc.nextInt());
+		int aid = appli.getAppid();
+		impapp.updatevisited(aid);
 		sc.close();
 		
 

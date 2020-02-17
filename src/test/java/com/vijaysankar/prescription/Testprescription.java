@@ -4,19 +4,20 @@ import com.vijaysankar.hmgsystems.prescription.Impprescription;
 import com.vijaysankar.hmgsystems.prescription.Prescriptionlist;
 public class Testprescription {
 	public static void main(String[] args) throws Exception {
-		Prescriptionlist L=new Prescriptionlist();
-		Impprescription M=new Impprescription();
+		Prescriptionlist presli=new Prescriptionlist();
+		Impprescription presimp=new Impprescription();
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Enter patient name:");
-		L.setPatientname(sc.next());
+		presli.setPatientname(sc.next());
 		System.out.println("Enter doctor name:");
-		L.setDoctorname(sc.next());
+		presli.setDoctorname(sc.next());
 		System.out.println("Enter comments :");
-		L.setComments(sc.next());
+		presli.setComments(sc.next());
 		System.out.println("Any other fee: ");
 		int a=sc.nextInt();
-		L.setTotalamt(a);
-		M.addData(L);
+		presli.setTotalamt(a);
+		presimp.getDoctorFee(presli.getDoctorname());
+		presimp.addData(presli);
 		sc.close();
 	}
 }

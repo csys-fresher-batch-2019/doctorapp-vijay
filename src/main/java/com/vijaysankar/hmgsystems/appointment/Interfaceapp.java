@@ -2,11 +2,14 @@ package com.vijaysankar.hmgsystems.appointment;
 
 import java.util.ArrayList;
 
-import com.vijaysankar.hmgsystems.doctors.Doctorlist;
+import org.jdbi.v3.sqlobject.statement.SqlQuery;
+import org.jdbi.v3.sqlobject.statement.SqlUpdate;
+
+import com.vijaysankar.hmgsystems.dbexception.Dbexception;
 
 public interface Interfaceapp {
-	public void addappointment(Appointmentlist a) throws Exception;
-	public void updateappointment(Appointmentlist b) throws Exception;
-	public void updatevisited(Appointmentlist c) throws Exception;
-	public ArrayList<Appointmentlist> viewapp() throws Exception;
+	public void addappointment(Appointmentlist a) throws Dbexception;
+	public void updateappointment(int pid) throws Dbexception;
+	public void updatevisited(int aid) throws Dbexception;
+	public ArrayList<Appointmentlist> viewapp() throws Dbexception;
 }
